@@ -1,12 +1,12 @@
 package com.kkukielka.petclinic.services.map;
 
 import com.kkukielka.petclinic.model.Pet;
-import com.kkukielka.petclinic.services.CrudService;
+import com.kkukielka.petclinic.services.PetService;
 
 import java.util.Set;
 
 public class PetServiceMap extends AbstractMapService<Pet, Long>
-        implements CrudService<Pet, Long> {
+        implements PetService {
 
     @Override
     public Set<Pet> findAll() {
