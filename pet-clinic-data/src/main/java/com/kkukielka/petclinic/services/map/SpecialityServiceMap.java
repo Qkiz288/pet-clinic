@@ -1,13 +1,13 @@
 package com.kkukielka.petclinic.services.map;
 
 import com.kkukielka.petclinic.model.Speciality;
-import com.kkukielka.petclinic.services.SpecialitiesService;
+import com.kkukielka.petclinic.services.SpecialityService;
 import org.springframework.stereotype.Service;
 
 import java.util.Set;
 
 @Service
-public class SpecialitiesServiceMap extends AbstractMapService<Speciality, Long> implements SpecialitiesService {
+public class SpecialityServiceMap extends AbstractMapService<Speciality, Long> implements SpecialityService {
     @Override
     public Set<Speciality> findAll() {
         return super.findAll();
