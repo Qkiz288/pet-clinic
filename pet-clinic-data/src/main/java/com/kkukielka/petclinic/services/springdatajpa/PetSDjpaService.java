@@ -3,12 +3,14 @@ package com.kkukielka.petclinic.services.springdatajpa;
 import com.kkukielka.petclinic.model.Pet;
 import com.kkukielka.petclinic.repositories.PetRepository;
 import com.kkukielka.petclinic.services.PetService;
+import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Service;
 
 import java.util.HashSet;
 import java.util.Set;
 
 @Service
+@Profile("springdatajpa")
 public class PetSDjpaService implements PetService {
 
     private final PetRepository petRepository;
