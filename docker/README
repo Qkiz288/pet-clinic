@@ -1,0 +1,35 @@
+--- USEFUL DOCKER COMMANDS ---
+
+To build and run application
+1. To build application .jar file, run: mvn clean install
+2. Copy .jar file from /target to /docker directory
+3. Run: docker build -t tagname .
+4. Run: docker run -d -p 8080:8080 tagname
+
+To check if image was built
+1. Run: docker images
+2. Image with tagname should be present
+
+To check container logs:
+1. Run: docker ps
+2. Copy CONTAINER ID
+3. Run: docker logs CONTAINER ID
+
+To enter centos bash
+1. Run: docker ps
+2. Copy NAMES of container
+3. Run: docker exec -it NAMES bash
+4. To exit, run: exit
+
+To stop container
+1. Run: docker stop CONTAINER ID
+
+--- EXPLANATION OF DOCKERFILE ---
+FROM centos // this is the centos image we will be working with
+
+RUN yum install -y java-11-openjdk // this installs java jdk, -y defaults script to always select y
+
+VOLUME /tmp // spring-boot will store tmp files here, Tomcat won't run properly without this
+ADD pet-clinic-web-0.0.1-SNAPSHOT.jar petclinic.jar // pet-clinic-web-0.0.1-SNAPSHOT.jar becomes petclinic.jar file inside docker image
+RUN sh -c 'touch /petclinic.jar' // updates the date on jar file, it can be important for caching static content
+ENTRYPOINT ["java", "-Djava.security.egd=file:/dev/./urandom", "-jar", "/petclinic.jar"] // this is the command which will be run by docker image inside container
